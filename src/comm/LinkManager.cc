@@ -69,30 +69,6 @@ LinkManager::LinkManager(QObject *parent) :
 void LinkManager::reloadSettings()
 {
     loadSettings();
-    //Check to see if we have a single serial and single UDP connection, since they are the defaults
-
-    bool foundserial = false;
-    bool foundudp = false;
-
-    for (QMap<int,LinkInterface*>::const_iterator i= m_connectionMap.constBegin();i!=m_connectionMap.constEnd();i++)
-    {
-        if (i.value()->getLinkType() == LinkInterface::SERIAL_LINK)
-        {
-            foundserial = true;
-        }
-        else if (i.value()->getLinkType() == LinkInterface::UDP_LINK)
-        {
-            foundudp = true;
-        }
-    }
-    if (!foundserial)
-    {
-        LinkManagerFactory::addSerialConnection();
-    }
-    if (!foundudp)
-    {
-        LinkManagerFactory::addUdpConnection(QHostAddress::Any,14550);
-    }
 }
 
 void LinkManager::stopLogging()
