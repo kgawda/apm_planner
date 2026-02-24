@@ -545,6 +545,10 @@ UASInterface* LinkManager::createUAS(MAVLinkProtocol* mavlink, LinkInterface* li
             break;
         }
 #endif
+    case MAV_AUTOPILOT_INVALID:
+    {
+        return nullptr;
+    }
     default:
     {
         UAS* mav = new UAS(mavlink, sysid);
