@@ -216,7 +216,7 @@ bool UDPClientLink::_hardwareConnect()
 void UDPClientLink::_sendTriggerMessage()
 {
     if (!_packetsReceived){
-        QLOG_DEBUG() << "Send UDP Client HELLO" << _targetHost.toString();
+        QLOG_DEBUG() << "Send UDP Client HELLO" << _targetHost.toString() << ":" << _port;
         _socket.write("HELLO");
         QTimer::singleShot(5000, this, SLOT(_sendTriggerMessage()));
     }
